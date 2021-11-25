@@ -10,9 +10,9 @@ import glob
 
 
 CUSTOM = {
-    'lazygit': lambda program_name, _, arg: lazygit(arg),
-    'terraform': lambda program_name, _, arg: terraform(arg),
-    'helix': lambda program_name, _, arg: helix(program_name, arg),
+    'lazygit': lambda program_name, sys, _, arg: lazygit(arg),
+    'terraform': lambda program_name, sys, _, version: terraform(version),
+    'helix': lambda program_name, sys, _, version: helix(program_name, version),
     }
 
 
@@ -79,6 +79,11 @@ def install_zsh():
     shell = pwd.getpwnam(os.environ['USER']).pw_shell
     if shell != shutil.which('zsh'):
         print("sudo chsh -s $(which zsh) %s" % os.environ['USER'])
+
+
+def install_sdkman(program_name, version):
+    yield 'source "~/.sdkman/bin/sdkman-init.sh"'
+    yield "sdk install %s %s" % (program_name, version)
 
 
 def pip(pips):
@@ -156,6 +161,7 @@ def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
     print("export EDITOR=hx")
+
     
 def install_keys(filename):
     current_keys = set()
@@ -225,21 +231,32 @@ def packages(config_filename):
                         "chmod u+x %s" % binary_local_path 
                         ])
 
-            elif install_method == 'cmd': 
+            elif install_method == 'cargo': 
                 path = shutil.which(program_name)
                 if not path:
+                    lines.append("cargo install %s" % arg)
+
+            elif install_method == 'cmd': 
+                path1 = shutil.which(program_name)
+                path2 = os.path.expanduser(program_name)
+                if not path1 and not os.path.exists(path2):
                     lines.append(arg)
             
             elif install_method == 'brew':
                 path = shutil.which(program_name)
                 if not path:
                     brews.append(arg)
-            
+                
+            elif install_method == 'sdkman':
+                path = shutil.which(program_name)
+                if not path:
+                    lines.extend(install_sdkman(program_name, arg))
+             
             elif install_method == 'pip':
                 pips.add(program_name)
                 
             elif install_method == 'custom' and program_name in CUSTOM:
-                CUSTOM[program_name](program_name, install_method, arg)
+                CUSTOM[program_name](program_name, system, install_method, arg)
 
     if apts:
         print("sudo apt install -y %s" % " ".join(apts))

@@ -26,8 +26,17 @@ zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
 
 eval "$(starship init zsh)"
+
+export PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
+
 eval "$(brew shellenv)"
 source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
+
+
+export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
+precmd() { ~/.cargo/bin/setgitconfig }
+
+source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
