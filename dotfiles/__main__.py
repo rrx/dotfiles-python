@@ -31,12 +31,15 @@ def get_project_path(*args):
 
 
 def get_dotfiles_config_paths(*args):
-    machine = platform.machine()
+    sys = platform.system().lower()
     directory = os.path.abspath(os.path.dirname(__file__))
-    for sys in ['common', machine]:
+    for sys in ['common', sys]:
         parts = [directory, 'config', sys]
+        base_path = os.path.join(*parts)
         parts.extend(args)
-        yield os.path.join(*parts)
+        path = os.path.join(*parts)
+        if os.path.exists(base_path):
+            yield path
 
 
 def get_path_directories():
@@ -66,6 +69,9 @@ def helix(program_name, version):
         'arch': platform.machine(),
         'sys': platform.system().lower()
         }
+
+    if data['sys'] == 'darwin':
+        data['sys'] = 'macos'    
     url = "https://github.com/helix-editor/helix/releases/download/v%(version)s/helix-v%(version)s-%(arch)s-%(sys)s.tar.xz" % data
     print("curl -o /tmp/%s.tar.xz -LO %s" % (program_name,url))
     path = "/tmp/helix-v%(version)s-%(arch)s-%(sys)s" % data
@@ -141,9 +147,13 @@ def lazygit(version):
 
 
 def shell_init():
+    directory = get_project_path()
+    print("export DOTFILES_DIR=%s" % directory)
+    print("export EDITOR=hx")
+
     add = []
     paths = set(get_path_directories())
-    for p in ['~/bin', '~/.cargo/bin', '~/.local/bin']:
+    for p in ['~/bin', '~/.local/bin']:
         path = os.path.expanduser(p)
         if path not in paths and path not in add:
             add.append(path)
@@ -151,16 +161,11 @@ def shell_init():
     if add:
         print("export PATH=%s:$PATH" % ":".join(add))
 
-    for wildcard_path in get_dotfiles_config_paths('*.sh'):
+    for wildcard_path in get_dotfiles_config_paths('zsh.sh'):
         for path in glob.glob(wildcard_path):
             if os.path.exists(path):
                 with open(path, 'r', encoding='utf-8') as fp:
                     print(fp.read())
-    
-
-    directory = get_project_path()
-    print("export DOTFILES_DIR=%s" % directory)
-    print("export EDITOR=hx")
 
     
 def install_keys(filename):
@@ -245,7 +250,7 @@ def packages(config_filename):
             elif install_method == 'brew':
                 path = shutil.which(program_name)
                 if not path:
-                    brews.append(arg)
+                    brews.add(arg)
                 
             elif install_method == 'sdkman':
                 path = shutil.which(program_name)
