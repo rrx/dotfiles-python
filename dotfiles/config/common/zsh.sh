@@ -8,6 +8,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ${DOTFILES_DIR}/config/common/aliases.sh
+source ${DOTFILES_DIR}/config/common/key-bindings.zsh
+source ${DOTFILES_DIR}/config/common/history.zsh
 
 # fix fg to be the same as bash
 fg() {
