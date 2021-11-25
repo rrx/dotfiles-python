@@ -1,0 +1,10 @@
+[keys.insert]
+"C-s" = "normal_mode"
+[keys.select]
+"C-s" = "normal_mode"
+
+#[keys.insert]
+#C-s = ["move_line_down", "normal_mode"] 
+
+#[keys.select]
+#C-s = ["move_line_down", "normal_mode"] 
