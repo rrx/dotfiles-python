@@ -1,11 +1,11 @@
-zmodload zsh/zprof
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+zmodload zsh/zprof
 
 source ${DOTFILES_DIR}/config/common/aliases.sh
 
@@ -53,8 +53,11 @@ if [[ -f $(command -v alacritty) ]]; then
   export TERMINAL=alacritty
 fi
 
-source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
-source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
+source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
 precmd() { ~/.cargo/bin/setgitconfig }
@@ -68,6 +71,8 @@ source $HOME/.cargo/env
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# fnm
+export PATH=${HOME}/.fnm:$PATH
 eval "$(fnm env)"
 
 # mcfly for history
