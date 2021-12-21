@@ -1,4 +1,3 @@
-alias lg=lazygit
 alias gco='git checkout'
 alias gc='git commit'
 alias gb='git branch'
@@ -9,11 +8,19 @@ alias gd='git diff'
 alias reload='eval "$(python3 -m dotfiles init)"'
 alias kc='kubectl'
 alias k='kubectl'
+alias lg='lazygit -ucf ${DOTFILES_DIR}/config/lazygit/config.yml'
+
+# aliases
+alias e="$EDITOR"
+
+alias zreload="source ~/.zshrc"
+alias zr="source ~/.zshrc"
+
+alias h="history"
 
 function sys-install() {
   python3 -m dotfiles install | bash
 }
-
 
 # See: https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
 function shell-benchmark() {

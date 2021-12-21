@@ -8,8 +8,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 source ${DOTFILES_DIR}/config/common/aliases.sh
+
+# keybindings from omz
 source ${DOTFILES_DIR}/config/common/key-bindings.zsh
-source ${DOTFILES_DIR}/config/common/history.zsh
+
+# auto suggestions
+[ ! -d ~/.zsh/zsh-autosuggestions ] && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 
 # fix fg to be the same as bash
 fg() {
@@ -63,6 +69,14 @@ source $HOME/.cargo/env
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(fnm env)"
+
+# mcfly for history
+export MCFLY_RESULTS=20
+export MCFLY_INTERFACE_VIEW=BOTTOM
+eval "$(mcfly init zsh)"
+
+# history from omz
+# source ${DOTFILES_DIR}/config/common/history.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
