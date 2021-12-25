@@ -76,12 +76,12 @@ export PATH=${HOME}/.fnm:$PATH
 eval "$(fnm env)"
 
 # mcfly for history
-export MCFLY_RESULTS=20
-export MCFLY_INTERFACE_VIEW=BOTTOM
-eval "$(mcfly init zsh)"
+export MCFLY_RESULTS=40
+export MCFLY_INTERFACE_VIEW=TOP
+# eval "$(mcfly init zsh)"
 
 # history from omz
-# source ${DOTFILES_DIR}/config/common/history.zsh
+source ${DOTFILES_DIR}/config/common/history.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
