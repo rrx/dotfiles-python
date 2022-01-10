@@ -12,11 +12,6 @@ source ${DOTFILES_DIR}/config/common/aliases.sh
 # keybindings from omz
 source ${DOTFILES_DIR}/config/common/key-bindings.zsh
 
-# auto suggestions
-[ ! -d ~/.zsh/zsh-autosuggestions ] && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-
 # fix fg to be the same as bash
 fg() {
   if [[ $# -eq 1 && $1 = - ]]; then
@@ -43,6 +38,17 @@ my-backward-delete-word () {
 }
 zle -N my-backward-delete-word
 bindkey '^W' my-backward-delete-word
+
+# auto suggestions
+[ ! -d ~/.zsh/plugins/zsh-autosuggestions ] && git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/plugins/zsh-autosuggestions
+source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# clipboard
+typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
+typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
+[ ! -d ~/.zsh/plugins/zsh-system-clipboard ] && git clone https://github.com/kutsan/zsh-system-clipboard ~/.zsh/plugins/zsh-system-clipboard
+source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
+
 
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
 
