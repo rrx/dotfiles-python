@@ -89,6 +89,11 @@ export MCFLY_INTERFACE_VIEW=TOP
 # history from omz
 source ${DOTFILES_DIR}/config/common/history.zsh
 
+# search defaults
+#export FZF_DEFAULT_COMMAND="ag -p $DOTFILES_DIR/config/common/search.ignore --hidden --ignore-dir=.git -g ''"
+#export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
+#export FZF_DEFAULT_COMMAND=rg --files --hidden
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
