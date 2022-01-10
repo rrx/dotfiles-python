@@ -47,7 +47,7 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 typeset -g ZSH_SYSTEM_CLIPBOARD_TMUX_SUPPORT='true'
 typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 [ ! -d ~/.zsh/plugins/zsh-system-clipboard ] && git clone https://github.com/kutsan/zsh-system-clipboard ~/.zsh/plugins/zsh-system-clipboard
-source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
+source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null
 
 
 source ~/.powerlevel10k/powerlevel10k.zsh-theme
