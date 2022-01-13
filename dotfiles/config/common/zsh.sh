@@ -94,6 +94,9 @@ source ${DOTFILES_DIR}/config/common/history.zsh
 #export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 #export FZF_DEFAULT_COMMAND=rg --files --hidden
 
+# source local zsh config if it exists
+test -f ~/.zshrc.local && source ~/.zshrc.local
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
