@@ -183,6 +183,20 @@ def install_keys(filename):
                 print("""umask 0077 ; echo "%s" >> ~/.ssh/authorized_keys""" % line)
     
 
+def install_fonts(filename):
+    with open(filename, 'r', encoding='utf-8') as fp:
+        reader = csv.reader(fp)
+        print("mkdir -p ~/.local/share/fonts/")
+        for row in reader:
+            url = row[0]
+            if len(url) == 0 or url.startswith("#"):
+                continue
+
+            print("wget -nc -P ~/.local/share/fonts/", url)
+
+        print("fc-cache -f -v")
+
+
 def packages(config_filename):
     apts = set()
     pips = set()
@@ -217,7 +231,7 @@ def packages(config_filename):
             # skip if it's not for this system
             if sys != '' and sys != system:
                 continue
-            
+   
             if install_method == 'dir':
                 path = os.path.expanduser(arg)
                 if not os.path.isdir(path):
@@ -230,7 +244,7 @@ def packages(config_filename):
 
             elif install_method == 'appimage' and system == 'linux':
                 binary_local_path = os.path.join(user_binary_dir, program_name)
-                if not binary_local_path:
+                if not os.path.exists(binary_local_path):
                     lines.extend([
                         "curl -o %s -LO %s" % (binary_local_path, arg),
                         "chmod u+x %s" % binary_local_path 
@@ -279,6 +293,7 @@ if __name__ == '__main__':
     cmd = sys.argv[1]
     if cmd == 'install':
         packages(get_project_path('config', 'common', 'install.conf'))
+        install_fonts(get_project_path('config', 'common', 'fonts.conf'))
     elif cmd == 'init':
         shell_init()
     elif cmd == 'info':
