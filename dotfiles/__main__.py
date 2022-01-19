@@ -194,7 +194,10 @@ def install_fonts(filename):
 
             print("wget -nc -P ~/.local/share/fonts/", url)
 
-        print("fc-cache -f -v")
+        system = platform.system().lower()
+        if system == 'linux':
+            # for linux only
+            print("fc-cache -f -v")
 
 
 def packages(config_filename):
