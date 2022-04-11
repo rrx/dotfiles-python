@@ -61,6 +61,7 @@ fi
 
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
 source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
