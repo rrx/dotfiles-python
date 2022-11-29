@@ -99,6 +99,11 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
 
 # source local zsh config if it exists
 test -f ~/.zshrc.local && source ~/.zshrc.local
+test -f ~/.zsh.local && source ~/.zsh.local
+
+# run direnv
+eval "$(direnv hook zsh)"
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
