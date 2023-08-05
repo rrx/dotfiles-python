@@ -61,6 +61,7 @@ fi
 
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
 source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
@@ -91,11 +92,18 @@ source ${DOTFILES_DIR}/config/common/history.zsh
 
 # search defaults
 #export FZF_DEFAULT_COMMAND="ag -p $DOTFILES_DIR/config/common/search.ignore --hidden --ignore-dir=.git -g ''"
+export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
 #export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 #export FZF_DEFAULT_COMMAND=rg --files --hidden
+#export FZF_DEFAULT_COMMAND='fd -L --hidden --exclude .git'
 
 # source local zsh config if it exists
 test -f ~/.zshrc.local && source ~/.zshrc.local
+test -f ~/.zsh.local && source ~/.zsh.local
+
+# run direnv
+eval "$(direnv hook zsh)"
+
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"
