@@ -149,7 +149,7 @@ def lazygit(version):
 def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
-    print("export EDITOR=hx")
+    # print("export EDITOR=hx")
 
     add = []
     paths = set(get_path_directories())
