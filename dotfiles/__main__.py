@@ -71,7 +71,7 @@ def helix(program_name, version):
         }
 
     if data['sys'] == 'darwin':
-        data['sys'] = 'macos'    
+        data['sys'] = 'macos'
     url = "https://github.com/helix-editor/helix/releases/download/v%(version)s/helix-v%(version)s-%(arch)s-%(sys)s.tar.xz" % data
     print("curl -o /tmp/%s.tar.xz -LO %s" % (program_name,url))
     path = "/tmp/helix-v%(version)s-%(arch)s-%(sys)s" % data
@@ -96,7 +96,7 @@ def pip(pips):
     reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze']).decode('utf-8').split("\n")
     packages = set()
     install = set()
-    
+
     for p in pips:
         has_package = False
         for line in reqs:
@@ -105,10 +105,10 @@ def pip(pips):
                 break
         if not has_package:
             install.add(p)
-                    
+
     for x in install:
         print("python3 -m pip install --user %s" % x)
-        
+
 
 
 def terraform(version):
@@ -151,6 +151,7 @@ def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
     # print("export EDITOR=hx")
+    print("export EDITOR=nvim")
 
     add = []
     paths = set(get_path_directories())
@@ -168,7 +169,7 @@ def shell_init():
                 with open(path, 'r', encoding='utf-8') as fp:
                     print(fp.read())
 
-    
+
 def install_keys(filename):
     current_keys = set()
     path = os.path.expanduser('~/.ssh/authorized_keys')
@@ -182,7 +183,7 @@ def install_keys(filename):
             line = " ".join(line.strip().split()[:2])
             if line not in current_keys:
                 print("""umask 0077 ; echo "%s" >> ~/.ssh/authorized_keys""" % line)
-    
+
 
 def install_fonts(filename):
     with open(filename, 'r', encoding='utf-8') as fp:
@@ -209,7 +210,7 @@ def packages(config_filename):
     lines = []
 
     user_binary_dir = os.path.expanduser('~/bin')
-   
+
     machine = platform.machine()
     system = platform.system().lower()
 
@@ -220,7 +221,7 @@ def packages(config_filename):
     install_keys(key_filename)
 
     install_zsh()
-    
+
     with open(config_filename, 'r', encoding='utf-8') as fp:
         reader = csv.reader(fp)
 
@@ -230,12 +231,12 @@ def packages(config_filename):
             if len(row[0]) == 0 or row[0].startswith("#"):
                 continue
             assert(len(row) == 4)
-            
+
             program_name, sys, install_method, arg = row
             # skip if it's not for this system
             if sys != '' and sys != system:
                 continue
-   
+
             if install_method == 'dir':
                 path = os.path.expanduser(arg)
                 if not os.path.isdir(path):
@@ -251,45 +252,45 @@ def packages(config_filename):
                 if not os.path.exists(binary_local_path):
                     lines.extend([
                         "curl -o %s -LO %s" % (binary_local_path, arg),
-                        "chmod u+x %s" % binary_local_path 
+                        "chmod u+x %s" % binary_local_path
                         ])
 
-            elif install_method == 'cargo': 
+            elif install_method == 'cargo':
                 path = shutil.which(program_name)
                 if not path:
                     lines.append("cargo install %s" % arg)
 
-            elif install_method == 'cmd': 
+            elif install_method == 'cmd':
                 path1 = shutil.which(program_name)
                 path2 = os.path.expanduser(program_name)
                 if not path1 and not os.path.exists(path2):
                     lines.append(arg)
-            
+
             elif install_method == 'brew':
                 path = shutil.which(program_name)
                 if not path:
                     brews.add(arg)
-                
+
             elif install_method == 'sdkman':
                 path = shutil.which(program_name)
                 if not path:
                     lines.extend(install_sdkman(program_name, arg))
-             
+
             elif install_method == 'pip':
                 pips.add(program_name)
-                
+
             elif install_method == 'custom' and program_name in CUSTOM:
                 CUSTOM[program_name](program_name, system, install_method, arg)
 
     if apts:
         print("sudo apt install -y %s" % " ".join(apts))
-    
+
     if pips:
         pip(pips)
-    
+
     if brews:
-        print("brew install %s" % " ".join(brews))    
-    
+        print("brew install %s" % " ".join(brews))
+
     for line in lines:
         print(line)
 
