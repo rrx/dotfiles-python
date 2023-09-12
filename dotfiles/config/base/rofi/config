@@ -1,0 +1,3 @@
+# https://github.com/davatorium/rofi
+# for more themes, see: https://github.com/davatorium/rofi-themes
+rofi.theme: ~/.config/rofi/gruvbox-dark-hard.rasi

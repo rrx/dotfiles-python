@@ -1,0 +1,38 @@
+super + 1
+  jumpapp alacritty
+
+super + 2
+  jumpapp firefox
+
+super + 3
+  jumpapp slack
+
+hyper + { r }
+  wm-reload | logger -s -t wm
+super + { r }
+  wm-reload | logger -s -t wm
+
+hyper + { a, s, d, f, g }
+  jumpapp {alacritty,firefox,slack,keepassxc,nautilus}
+
+hyper + c
+  xdotool key Caps_Lock
+
+#Menu + { a, s, d }
+#  jumpapp {alacritty,firefox,slack}
+
+# toggle quake terminal
+super + y
+  tilix -q
+hyper + y
+  tilix -q
+
+super + Return
+  $TERMINAL
+
+ctrl + alt + Delete
+  $TERMINAL
+
+# make sxhkd reload its configuration files:
+alt + shift + Escape
+	pkill -USR1 -x sxhkd

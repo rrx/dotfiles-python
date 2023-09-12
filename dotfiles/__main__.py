@@ -7,6 +7,7 @@ import pwd
 import grp
 import subprocess
 import glob
+from .install import system_dotfiles_install
 
 
 CUSTOM = {
@@ -294,9 +295,14 @@ def packages(config_filename):
     for line in lines:
         print(line)
 
+
 if __name__ == '__main__':
     cmd = sys.argv[1]
-    if cmd == 'install':
+    if cmd == 'install_dotfiles':
+        base = get_project_path("config")
+        print(base)
+        system_dotfiles_install(base)
+    elif cmd == 'install':
         packages(get_project_path('config', 'common', 'install.conf'))
         install_fonts(get_project_path('config', 'common', 'fonts.conf'))
     elif cmd == 'init':

@@ -1,0 +1,11 @@
+sym|base/zshrc.sh|.zshrc
+sym|base/tmux.conf|.tmux.conf
+sym|base/tmux.conf|.config/tmux.conf
+sym|base/gitconfig|.gitconfig
+sym|base/tool-versions|.tool-versions
+sym|base/editorconfig-defaults|.editorconfig
+sym|nvim|.vim
+sym|nvim|.config/nvim
+sym|alacritty|.config/alacritty
+sym|starship.toml|.config/starship.toml
+sym|sxhkd|.config/sxhkd
