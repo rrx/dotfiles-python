@@ -94,12 +94,12 @@ source $HOME/.cargo/env
 source ${DOTFILES_DIR}/config/common/history.zsh
 
 # search defaults
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND="ag -p $DOTFILES_DIR/config/common/search.ignore --hidden --ignore-dir=.git -g ''"
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
 #export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 #export FZF_DEFAULT_COMMAND=rg --files --hidden
 #export FZF_DEFAULT_COMMAND='fd -L --hidden --exclude .git'
-
 # source local zsh config if it exists
 test -f ~/.zshrc.local && source ~/.zshrc.local
 test -f ~/.zsh.local && source ~/.zsh.local
