@@ -19,3 +19,9 @@ To setup your environment, add the following to your .zshrc:
 ```
 eval "$(python3 -m dotfiles init)"
 ```
+
+To install dotfiles using symbolic links:
+
+```
+python3 -m dotfiles install_dotfiles
+```
