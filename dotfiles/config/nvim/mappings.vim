@@ -188,14 +188,14 @@ nnoremap <M-l>    :vertical resize +2<CR>
 "nmap <Leader>md <Plug>MarkdownPreviewToggle
 
 " Nerd Commenter
-nnoremap <leader>n :call NERDComment(0,"toggle")<cr>
+nnoremap <leader>n :call nerdcommenter#Comment(0,"toggle")<cr>
 " stay in visual mode if in visual mode
-vnoremap <leader>n :call NERDComment(1,"toggle")<cr>gv
+vnoremap <leader>n :call nerdcommenter#Comment(1,"toggle")<cr>gv
 " map control+forward slash, for some reason the way to get that is `_`
 " See: https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
-"nnoremap <C-_> :call NERDComment(1,"toggle")<cr>
-"vnoremap <C-_> :call NERDComment(1,"toggle")<cr>gv
-"inoremap <C-_> <Esc>:call NERDComment(1,"toggle")<cr>a
+"nnoremap <C-_> :call nerdcommenter#Comment(1,"toggle")<cr>
+"vnoremap <C-_> :call nerdcommenter#Comment(1,"toggle")<cr>gv
+"inoremap <C-_> <Esc>:call nerdcommenter#Comment(1,"toggle")<cr>a
 
 " open buffer with keybindings
 nnoremap <leader>Y :redir! > /tmp/keys.txt<CR> \| :verbose map<CR> \| :redir END<CR> \| :e /tmp/keys.txt<CR>
