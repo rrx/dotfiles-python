@@ -63,8 +63,8 @@ test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
-source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+#source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
+#source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 
 export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
 precmd() { ~/.cargo/bin/setgitconfig }
@@ -79,12 +79,15 @@ source $HOME/.cargo/env
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fnm
-export PATH=${HOME}/.fnm:$PATH
-eval "$(fnm env)"
+#export PATH=${HOME}/.fnm:$PATH
+#eval "$(fnm env)"
+
+# racket
+#export PATH=${HOME}/racket/bin:$PATH
 
 # mcfly for history
-export MCFLY_RESULTS=40
-export MCFLY_INTERFACE_VIEW=TOP
+#export MCFLY_RESULTS=40
+#export MCFLY_INTERFACE_VIEW=TOP
 # eval "$(mcfly init zsh)"
 
 # history from omz
@@ -103,6 +106,10 @@ test -f ~/.zsh.local && source ~/.zsh.local
 
 # run direnv
 eval "$(direnv hook zsh)"
+
+
+# nix
+source ${DOTFILES_DIR}/config/common/nix.zsh
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

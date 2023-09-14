@@ -161,6 +161,18 @@ def shell_init():
         if path not in paths and path not in add:
             add.append(path)
 
+    FLUTTER_PATH = os.path.expanduser(os.path.join("~", "tools", "flutter", "bin"))
+    if os.path.exists(FLUTTER_PATH):
+        add.append(FLUTTER_PATH)
+
+    ANDROID_SDK_ROOT = os.path.expanduser(os.path.join("~", "Android", "Sdk"))
+    ANDROID_PATH = os.path.expanduser(os.path.join("~", "tools", "android-studio", "bin"))
+    # ANDROID_PATH = os.path.join(ANDROID_SDK_ROOT, "bin")
+    if os.path.exists(ANDROID_PATH):
+        add.append(ANDROID_PATH)
+    if os.path.exists(ANDROID_SDK_ROOT):
+        print("export ANDROID_SDK_ROOT=%s" % ANDROID_SDK_ROOT)
+
     if add:
         print("export PATH=%s:$PATH" % ":".join(add))
 
