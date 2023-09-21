@@ -65,6 +65,7 @@ test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
 #source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
 precmd() { ~/.cargo/bin/setgitconfig }

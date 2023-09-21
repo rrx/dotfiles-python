@@ -151,7 +151,6 @@ def lazygit(version):
 def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
-    # print("export EDITOR=hx")
     print("export EDITOR=nvim")
 
     add = []
@@ -167,7 +166,7 @@ def shell_init():
 
     ANDROID_SDK_ROOT = os.path.expanduser(os.path.join("~", "Android", "Sdk"))
     ANDROID_PATH = os.path.expanduser(os.path.join("~", "tools", "android-studio", "bin"))
-    # ANDROID_PATH = os.path.join(ANDROID_SDK_ROOT, "bin")
+
     if os.path.exists(ANDROID_PATH):
         add.append(ANDROID_PATH)
     if os.path.exists(ANDROID_SDK_ROOT):
