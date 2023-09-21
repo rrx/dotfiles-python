@@ -80,8 +80,13 @@ source $HOME/.cargo/env
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fnm
-#export PATH=${HOME}/.fnm:$PATH
-#eval "$(fnm env)"
+# install if missing
+INSTALL_NODE_VERSION=18.18.0
+command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
+eval "$(fnm env)"
+command -v node >> /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
+
+export PATH=${HOME}/.fnm:$PATH
 
 # racket
 #export PATH=${HOME}/racket/bin:$PATH
