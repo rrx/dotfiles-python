@@ -1,5 +1,6 @@
 sym|base/zshrc.sh|.zshrc
 sym|base/tmux.conf|.tmux.conf
+sym|common/.tmux.conf.local|.tmux.conf.local
 sym|base/tmux.conf|.config/tmux.conf
 sym|base/gitconfig|.gitconfig
 sym|base/tool-versions|.tool-versions
@@ -9,3 +10,5 @@ sym|nvim|.config/nvim
 sym|alacritty|.config/alacritty
 sym|starship.toml|.config/starship.toml
 sym|sxhkd|.config/sxhkd
+sym|common/search.ignore|.agignore
+
