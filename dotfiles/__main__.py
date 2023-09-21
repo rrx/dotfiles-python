@@ -8,7 +8,7 @@ import grp
 import subprocess
 import glob
 from .install_dotfiles import system_dotfiles_install
-
+from .install_python import install_python_packages
 
 CUSTOM = {
     'lazygit': lambda program_name, sys, _, arg: lazygit(arg),
@@ -152,6 +152,8 @@ def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
     print("export EDITOR=nvim")
+
+    install_python_packages()
 
     add = []
     paths = set(get_path_directories())
