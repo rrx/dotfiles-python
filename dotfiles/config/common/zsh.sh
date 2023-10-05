@@ -7,6 +7,10 @@
 
 zmodload zsh/zprof
 
+# ensure all aqua dependencies are installed
+aqua i -a
+export PATH=$PATH:$(aqua root-dir)/bin
+
 source ${DOTFILES_DIR}/config/common/aliases.sh
 
 # keybindings from omz
@@ -105,9 +109,6 @@ test -f ~/.zsh.local && source ~/.zsh.local
 
 # run direnv
 eval "$(direnv hook zsh)"
-
-# ensure all aqua dependencies are installed
-aqua i -a
 
 # nix
 #source ${DOTFILES_DIR}/config/common/nix.zsh
