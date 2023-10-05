@@ -7,7 +7,8 @@ import pwd
 import grp
 import subprocess
 import glob
-from .install import system_dotfiles_install
+from .install_dotfiles import system_dotfiles_install
+from .install_python import install_python_default_packages
 
 
 CUSTOM = {
@@ -151,8 +152,9 @@ def lazygit(version):
 def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
-    # print("export EDITOR=hx")
     print("export EDITOR=nvim")
+
+    install_python_default_packages()
 
     add = []
     paths = set(get_path_directories())
@@ -167,7 +169,7 @@ def shell_init():
 
     ANDROID_SDK_ROOT = os.path.expanduser(os.path.join("~", "Android", "Sdk"))
     ANDROID_PATH = os.path.expanduser(os.path.join("~", "tools", "android-studio", "bin"))
-    # ANDROID_PATH = os.path.join(ANDROID_SDK_ROOT, "bin")
+
     if os.path.exists(ANDROID_PATH):
         add.append(ANDROID_PATH)
     if os.path.exists(ANDROID_SDK_ROOT):
@@ -199,17 +201,20 @@ def install_keys(filename):
 
 
 def install_fonts(filename):
+    system = platform.system().lower()
+
+    fonts_dir = dict(linux="~/.local/share/fonts", darwin="/Library/Fonts")[system]
+
     with open(filename, 'r', encoding='utf-8') as fp:
         reader = csv.reader(fp)
-        print("mkdir -p ~/.local/share/fonts/")
+        print(f"mkdir -p {fonts_dir}")
         for row in reader:
-            url = row[0]
+            url = row[0].strip()
             if len(url) == 0 or url.startswith("#"):
                 continue
 
-            print("wget -nc -P ~/.local/share/fonts/", url)
+            print(f"wget -nc -P {fonts_dir}", url)
 
-        system = platform.system().lower()
         if system == 'linux':
             # for linux only
             print("fc-cache -f -v")
@@ -308,16 +313,27 @@ def packages(config_filename):
         print(line)
 
 
+def cmd_install_dotfiles():
+    base = get_project_path("config")
+    print(base)
+    system_dotfiles_install(base)
+
+
+def cmd_install():
+    packages(get_project_path('config', 'common', 'install.conf'))
+    install_fonts(get_project_path('config', 'common', 'fonts.conf'))
+
+
+CMDS = dict(
+    install_dotfiles=cmd_install_dotfiles,
+    install=cmd_install,
+    init=shell_init,
+    info=info
+    )
+
 if __name__ == '__main__':
-    cmd = sys.argv[1]
-    if cmd == 'install_dotfiles':
-        base = get_project_path("config")
-        print(base)
-        system_dotfiles_install(base)
-    elif cmd == 'install':
-        packages(get_project_path('config', 'common', 'install.conf'))
-        install_fonts(get_project_path('config', 'common', 'fonts.conf'))
-    elif cmd == 'init':
-        shell_init()
-    elif cmd == 'info':
-        info()
+    cmd_fns = [CMDS[cmd] for cmd in sys.argv[1:]]
+    for f in cmd_fns:
+        f()
+    if len(cmd_fns) == 0:
+        print(CMDS.keys())

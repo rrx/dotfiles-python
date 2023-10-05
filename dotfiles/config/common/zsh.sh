@@ -68,6 +68,7 @@ test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
 #source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
 precmd() { ~/.cargo/bin/setgitconfig }
@@ -82,8 +83,13 @@ source $HOME/.cargo/env
 #[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # fnm
-#export PATH=${HOME}/.fnm:$PATH
-#eval "$(fnm env)"
+# install if missing
+INSTALL_NODE_VERSION=18.18.0
+command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
+eval "$(fnm env)"
+command -v node >> /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
+
+export PATH=${HOME}/.fnm:$PATH
 
 # racket
 #export PATH=${HOME}/racket/bin:$PATH

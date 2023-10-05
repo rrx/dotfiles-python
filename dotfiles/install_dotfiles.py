@@ -17,8 +17,9 @@ def is_windows():
 def read_manifest(filename):
     with open(filename, "r") as fp:
         for line in fp.readlines():
-            if not line.startswith("#"):
-                action, source, target  = line.strip().split("|")
+            line = line.strip()
+            if len(line) > 0 and not line.startswith("#"):
+                action, source, target  = line.split("|")
                 yield action, source, target
 
 
