@@ -1,11 +1,15 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  #source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 zmodload zsh/zprof
+
+# ensure all aqua dependencies are installed
+aqua i -a
+export PATH=$PATH:$(aqua root-dir)/bin
 
 source ${DOTFILES_DIR}/config/common/aliases.sh
 
@@ -50,17 +54,16 @@ typeset -g ZSH_SYSTEM_CLIPBOARD_SELECTION='PRIMARY'
 source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null
 
 
-source ~/.powerlevel10k/powerlevel10k.zsh-theme
-
-#eval "$(starship init zsh)"
+#source ~/.powerlevel10k/powerlevel10k.zsh-theme
+eval "$(starship init zsh)"
 
 # set preferred commands
 if [[ -f $(command -v alacritty) ]]; then
   export TERMINAL=alacritty
 fi
 
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+#test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+#test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
@@ -73,7 +76,7 @@ precmd() { ~/.cargo/bin/setgitconfig }
 source $HOME/.cargo/env
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #export NVM_DIR="$HOME/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -100,12 +103,12 @@ export PATH=${HOME}/.fnm:$PATH
 source ${DOTFILES_DIR}/config/common/history.zsh
 
 # search defaults
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND="ag -p $DOTFILES_DIR/config/common/search.ignore --hidden --ignore-dir=.git -g ''"
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
 #export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 #export FZF_DEFAULT_COMMAND=rg --files --hidden
 #export FZF_DEFAULT_COMMAND='fd -L --hidden --exclude .git'
-
 # source local zsh config if it exists
 test -f ~/.zshrc.local && source ~/.zshrc.local
 test -f ~/.zsh.local && source ~/.zsh.local
@@ -113,9 +116,8 @@ test -f ~/.zsh.local && source ~/.zsh.local
 # run direnv
 eval "$(direnv hook zsh)"
 
-
 # nix
-source ${DOTFILES_DIR}/config/common/nix.zsh
+#source ${DOTFILES_DIR}/config/common/nix.zsh
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!

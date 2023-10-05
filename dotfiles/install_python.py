@@ -1,19 +1,20 @@
 import importlib.util
-import pip
 import sys
-import subprocess
 
 
-PACKAGES = ["pynvim"]
+PACKAGES = ["pynvim", "python-lsp-server"]
 
-def install_python_packages():
-    for name in PACKAGES:
+
+def install_python_default_packages():
+    install_python_packages(PACKAGES)
+
+
+def install_python_packages(packages):
+    for name in packages:
         if name in sys.modules:
             continue
-        elif (spec := importlib.util.find_spec(name)) is not None:
-            # print('asdf', spec)
+        elif (_ := importlib.util.find_spec(name)) is not None:
             continue
         else:
             args = [sys.executable, "-m", "pip", "install", name]
-            # subprocess.check_call(args)
             print(" ".join(args))
