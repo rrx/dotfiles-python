@@ -2,7 +2,8 @@ sym|base/zshrc.sh|.zshrc
 sym|base/tmux.conf|.tmux.conf
 sym|common/.tmux.conf.local|.tmux.conf.local
 sym|base/tmux.conf|.config/tmux.conf
-sym|base/gitconfig|.gitconfig
+sym|base/.gitconfig|.gitconfig
+sym|base/.gitignore_global|.gitignore_global
 sym|base/tool-versions|.tool-versions
 sym|base/editorconfig-defaults|.editorconfig
 sym|nvim|.vim
