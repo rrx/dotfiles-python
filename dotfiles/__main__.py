@@ -154,7 +154,7 @@ def shell_init():
     print("export DOTFILES_DIR=%s" % directory)
     print("export EDITOR=nvim")
 
-    install_python_default_packages()
+    # install_python_default_packages()
 
     add = []
     paths = set(get_path_directories())
@@ -320,6 +320,7 @@ def cmd_install_dotfiles():
 
 
 def cmd_install():
+    install_python_default_packages()
     packages(get_project_path('config', 'common', 'install.conf'))
     install_fonts(get_project_path('config', 'common', 'fonts.conf'))
 

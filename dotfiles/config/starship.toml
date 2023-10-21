@@ -6,7 +6,10 @@ min_time = 500
 [kubernetes]
 symbol = "⛵ "
 #style = "dimmed green"
-disabled = false
+disabled = true
+
+#[kubernetes.context_aliases]
+#"dev.local.cluster.k8s" = "dev"
 
 [custom]
 
@@ -14,5 +17,5 @@ disabled = false
 command = "tab --starship"
 when = "tab --starship"
 style = "bold blue"
-#[kubernetes.context_aliases]
-#"dev.local.cluster.k8s" = "dev"
+disabled = true
+
