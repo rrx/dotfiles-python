@@ -14,3 +14,4 @@ packages:
 - name: neovim/neovim@stable
 - name: starship/starship@v1.16.0
 - name: sharkdp/bat@v0.23.0
+- name: dandavison/delta@0.16.5
