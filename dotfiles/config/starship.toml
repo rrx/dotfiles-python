@@ -8,8 +8,8 @@ symbol = "⛵ "
 #style = "dimmed green"
 disabled = true
 
-#[kubernetes.context_aliases]
-#"dev.local.cluster.k8s" = "dev"
+[docker_context]
+disabled = true
 
 [custom]
 
