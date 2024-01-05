@@ -4,3 +4,7 @@ eval "$(python3 -m dotfiles init)"
 export SDKMAN_DIR="${HOME}/sdkman"
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
+
+export AWS_SDK_LOAD_CONFIG=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
