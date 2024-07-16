@@ -9,6 +9,7 @@ sym|base/editorconfig-defaults|.editorconfig
 sym|nvim|.vim
 sym|nvim|.config/nvim
 sym|alacritty|.config/alacritty
+sym|setgitconfig|.config/setgitconfig
 sym|starship.toml|.config/starship.toml
 sym|sxhkd|.config/sxhkd
 sym|common/search.ignore|.agignore

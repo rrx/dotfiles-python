@@ -25,6 +25,7 @@ def read_manifest(filename):
 
 def exec_manifest(base, filename):
     filename = os.path.join(base, filename)
+    os.makedirs(os.path.expanduser("~/.config"), exist_ok=True)
     for action, source, target in read_manifest(filename):
         source = os.path.abspath(os.path.join(base, source))
         assert os.path.exists(source), f"Missing source file: {source}"
