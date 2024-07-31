@@ -58,7 +58,7 @@ source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null
 #source ~/.powerlevel10k/powerlevel10k.zsh-theme
 
 if [[ -f $(command -v starship) ]]; then
-  source "$HOME/.zsh/spaceship/spaceship.zsh"
+  #source "$HOME/.zsh/spaceship/spaceship.zsh"
   eval "$(starship init zsh)"
 fi
 
@@ -75,9 +75,6 @@ test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 #source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
-precmd() { ~/.cargo/bin/setgitconfig }
-
 source $HOME/.cargo/env
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -93,7 +90,7 @@ if [[ -f $(command -v fnm) ]]; then
   INSTALL_NODE_VERSION=18.18.0
   #command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
   eval "$(fnm env)"
-  command -v fnm && command -v node >> /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
+  #command -v fnm > /dev/null && command -v node > /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
   export PATH=${HOME}/.fnm:$PATH
 fi
 

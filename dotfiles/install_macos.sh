@@ -57,8 +57,6 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
 
-cargo install setgitconfig-rs
-
 # install fonts
 cd /Library/Fonts && {
 	wget https://github.com/ryanoasis/nerd-fonts/raw/2.1.0/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete.ttf
