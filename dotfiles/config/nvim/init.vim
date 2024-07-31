@@ -15,7 +15,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ggandor/leap-ast.nvim'
 Plug 'ggandor/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' ", {'do': ':TSUpdate'}
-Plug 'neovim/nvim-lspconfig'
+"Plug 'neovim/nvim-lspconfig'
 
 " FZF
 " https://github.com/junegunn/fzf.vim
