@@ -28,6 +28,18 @@ let g:which_key_map.f = [ ':Files',  'search files with FZF' ]
 "nnoremap <silent> <leader>b  <Esc><Esc>:BLines<CR>
 let g:which_key_map.b = [ ':BLines',  'search lines in current buffer with FZF' ]
 
+" Telescope
+nnoremap <leader>tf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>tg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>tb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>th <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>tlr <cmd>lua require('telescope.builtin').lsp_references()<cr>
+nnoremap <leader>tli <cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>
+nnoremap <leader>tlo <cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>
+nnoremap <leader>tlx <cmd>lua require('telescope.builtin').diagnostics()<cr>
+nnoremap <leader>tli <cmd>lua require('telescope.builtin').lsp_implementations()<cr>
+nnoremap <leader>tld <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
+
 " Use silver searcher - ignore git related files, include hidden files
 "let $FZF_DEFAULT_COMMAND = 'ag -p --hidden --ignore-dir=.git -g ""'
 "let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'

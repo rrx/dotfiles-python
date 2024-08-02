@@ -4,13 +4,14 @@ Do common environment configuration.
 
 To install:
 ```
+
+# install module
 python3 -m pip install -e .
-```
 
-To run:
+Install dotfiles using symbolic links:
+python3 -m dotfiles install_dotfiles
 
-```
-# install everything
+# install everything else
 python3 -m dotfiles install | bash
 ```
 
@@ -20,8 +21,3 @@ To setup your environment, add the following to your .zshrc:
 eval "$(python3 -m dotfiles init)"
 ```
 
-To install dotfiles using symbolic links:
-
-```
-python3 -m dotfiles install_dotfiles
-```

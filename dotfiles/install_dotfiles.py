@@ -14,7 +14,7 @@ def is_windows():
     return platform.system() == "Windows"
 
 
-def read_manifest(filename):
+def read_dotfiles(filename):
     with open(filename, "r") as fp:
         for line in fp.readlines():
             line = line.strip()
@@ -23,9 +23,10 @@ def read_manifest(filename):
                 yield action, source, target
 
 
-def exec_manifest(base, filename):
+def exec_dotfiles(base, filename):
     filename = os.path.join(base, filename)
-    for action, source, target in read_manifest(filename):
+    os.makedirs(os.path.expanduser("~/.config"), exist_ok=True)
+    for action, source, target in read_dotfiles(filename):
         source = os.path.abspath(os.path.join(base, source))
         assert os.path.exists(source), f"Missing source file: {source}"
         full_target = os.path.expanduser(os.path.join("~", target))
@@ -50,9 +51,9 @@ def exec_manifest(base, filename):
 
 def system_dotfiles_install(base):
     print("Platform", platform.system())
-    exec_manifest(base, "MANIFEST")
+    exec_dotfiles(base, "dotfiles.conf")
     if is_macos():
-        exec_manifest(base, "MANIFEST.macos")
+        exec_dotfiles(base, "dotfiles.macos.conf")
     elif is_linux():
-        exec_manifest(base, "MANIFEST.linux")
+        exec_dotfiles(base, "dotfiles.linux.conf")
 

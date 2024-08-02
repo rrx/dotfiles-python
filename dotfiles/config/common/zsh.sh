@@ -8,9 +8,9 @@
 zmodload zsh/zprof
 
 # ensure all aqua dependencies are installed
-export AQUA_GLOBAL_CONFIG=${HOME}/.aqua.yaml
-aqua i -a
-export PATH=$PATH:$(aqua root-dir)/bin
+#export AQUA_GLOBAL_CONFIG=${HOME}/.aqua.yaml
+#aqua i -a
+#export PATH=$PATH:$(aqua root-dir)/bin
 
 source ${DOTFILES_DIR}/config/common/aliases.sh
 
@@ -56,8 +56,11 @@ source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null
 
 
 #source ~/.powerlevel10k/powerlevel10k.zsh-theme
-source "$HOME/.zsh/spaceship/spaceship.zsh"
-eval "$(starship init zsh)"
+
+if [[ -f $(command -v starship) ]]; then
+  #source "$HOME/.zsh/spaceship/spaceship.zsh"
+  eval "$(starship init zsh)"
+fi
 
 # set preferred commands
 if [[ -f $(command -v alacritty) ]]; then
@@ -72,9 +75,6 @@ test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 #source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export SETGITCONFIG_CONF=~/.config/setgitconfig/config.toml
-precmd() { ~/.cargo/bin/setgitconfig }
-
 source $HOME/.cargo/env
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -86,12 +86,13 @@ source $HOME/.cargo/env
 
 # fnm
 # install if missing
-INSTALL_NODE_VERSION=18.18.0
-#command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
-eval "$(fnm env)"
-command -v node >> /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
-
-export PATH=${HOME}/.fnm:$PATH
+if [[ -f $(command -v fnm) ]]; then
+  INSTALL_NODE_VERSION=18.18.0
+  #command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
+  eval "$(fnm env)"
+  #command -v fnm > /dev/null && command -v node > /dev/null || fnm install ${INSTALL_NODE_VERSION} --silent-if-unchanged && fnm use ${INSTALL_NODE_VERSION} --silent-if-unchanged --log-level quiet
+  export PATH=${HOME}/.fnm:$PATH
+fi
 
 # racket
 #export PATH=${HOME}/racket/bin:$PATH

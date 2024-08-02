@@ -1,6 +1,7 @@
-[user]
-	email = rrsadler@gmail.com
-	name = Ryan Sadler
+[includeIf "gitdir:~/src/"]
+    path = .gitconfig-work
+[includeIf "gitdir:~/code/"]
+    path = .gitconfig-personal
 
 [core]
         pager = delta --color-only --line-numbers --dark --features=interactive
@@ -20,3 +21,6 @@
 [push]
 	default = current
   autoSetupRemote = true
+[user]
+	name = Ryan Sadler
+	email = rrsadler@gmail.com

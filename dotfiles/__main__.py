@@ -236,7 +236,7 @@ def packages(config_filename):
         print("ssh-keygen -f ~/.ssh/id_rsa -N ''")
 
     key_filename = get_project_path('public_keys')
-    install_keys(key_filename)
+    # install_keys(key_filename)
 
     install_zsh()
 

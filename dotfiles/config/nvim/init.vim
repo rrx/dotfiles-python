@@ -15,11 +15,18 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ggandor/leap-ast.nvim'
 Plug 'ggandor/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' ", {'do': ':TSUpdate'}
+"Plug 'neovim/nvim-lspconfig'
 
 " FZF
 " https://github.com/junegunn/fzf.vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+
+Plug 'BurntSushi/ripgrep'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+
 
 " Vimux
 Plug 'preservim/vimux'

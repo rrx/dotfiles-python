@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyls', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
+let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyls', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
 "
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -25,7 +25,7 @@ function! s:show_documentation()
 endfunction
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call   CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
