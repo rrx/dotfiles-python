@@ -4,13 +4,11 @@
     path = .gitconfig-personal
 
 [core]
-        pager = delta --color-only --line-numbers --dark --features=interactive
+        pager = delta --color-only
 
 [delta]
-    plus-color = "#012800"
-    minus-color = "#340001"
-    syntax-theme = Monokai Extended
     features = decorations
+    navigate = true
 
 [interactive]
     diffFilter = delta --color-only --features=interactive
@@ -21,6 +19,11 @@
 [push]
 	default = current
   autoSetupRemote = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 [user]
 	name = Ryan Sadler
 	email = rrsadler@gmail.com
