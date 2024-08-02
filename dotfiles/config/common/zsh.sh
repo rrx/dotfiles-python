@@ -7,11 +7,6 @@
 
 zmodload zsh/zprof
 
-# ensure all aqua dependencies are installed
-#export AQUA_GLOBAL_CONFIG=${HOME}/.aqua.yaml
-#aqua i -a
-#export PATH=$PATH:$(aqua root-dir)/bin
-
 source ${DOTFILES_DIR}/config/common/aliases.sh
 
 # keybindings from omz
