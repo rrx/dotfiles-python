@@ -8,10 +8,10 @@
 #   - all
 registries:
 - type: standard
-  ref: v4.28.0 # renovate: depName=aquaproj/aqua-registry
+  ref: v4.196.0 # renovate: depName=aquaproj/aqua-registry
 packages:
-- name: Schniz/fnm@v1.35.0
-- name: neovim/neovim@stable
-- name: starship/starship@v1.16.0
-- name: sharkdp/bat@v0.23.0
-- name: dandavison/delta@0.16.5
+- name: Schniz/fnm@v1.37.1
+- name: neovim/neovim@v0.10.0
+- name: starship/starship@v1.19.0
+- name: sharkdp/bat@v0.24.0
+- name: dandavison/delta@0.17.0
