@@ -1,5 +1,3 @@
-export PATH=/home/linuxbrew/.linuxbrew/bin/:$PATH
-
 if [ -n "${DISPLAY+1}" ]; then
 # map caps lock to hyper character, escape is an alternative
 setxkbmap -option caps:hyper
