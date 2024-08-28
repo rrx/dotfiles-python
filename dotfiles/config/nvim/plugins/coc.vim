@@ -1,5 +1,5 @@
-let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyls', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
-"
+let g:coc_global_extensions = ['coc-sh', 'coc-json', 'coc-tsserver', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyls', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
+
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
