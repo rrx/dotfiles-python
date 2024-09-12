@@ -45,9 +45,10 @@ Plug 'mhinz/vim-startify'
 
 " Themes
  "https://github.com/joshdick/onedark.vim
-"Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 "Plug 'christianchiarulli/onedark.vim'
 Plug 'drewtempelmeyer/palenight.vim'
+Plug 'bluz71/vim-moonfly-colors', { 'as': 'moonfly' }
 
 " Tabline
 Plug 'kyazdani42/nvim-web-devicons'
