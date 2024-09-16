@@ -75,7 +75,9 @@ Plug 'editorconfig/editorconfig-vim'
 " Markdown Preview
 """"""""""""""""""""""""""
 " https://github.com/iamcco/markdown-preview.nvim
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+"Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
 " don't close the browser when navigating between tabs
 let g:mkdp_auto_close = 0
 
