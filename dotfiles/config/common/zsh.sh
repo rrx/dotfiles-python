@@ -27,9 +27,12 @@ bindkey -s '^Z' 'fg\n'  # C-Z
 # zle movement
 bindkey '^[[1;9C' forward-word    # C-<Right>
 bindkey '^[[1;5C' forward-word    # C-<Right>
+bindkey "^[[1;3C" forward-word    # A-<Right>
 bindkey '^[[1;9D' backward-word   # C-<Left>
 bindkey '^[[1;5D' backward-word   # C-<Left>
+bindkey "^[[1;3D" backward-word   # A-<Left>
 bindkey "^[[3;5~" kill-word       # C-<DEL>
+bindkey "^[[3;3~" kill-word       # A-<DEL>
 
 # backwards delete to non-alphanumeric character, better for editing urls
 my-backward-delete-word () {
@@ -68,7 +71,7 @@ test -d /opt/homebrew/bin && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #source "$(env brew --prefix)/opt/fzf/shell/completion.zsh"
 #source "$(env brew --prefix)/opt/fzf/shell/key-bindings.zsh"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && eval "$(fzf --zsh)" && source ~/.fzf.zsh
 
 source $HOME/.cargo/env
 
@@ -89,6 +92,10 @@ if [[ -f $(command -v fnm) ]]; then
   export PATH=${HOME}/.fnm:$PATH
 fi
 
+if [[ -f $(command -v go) ]]; then
+  export PATH=${HOME}/go/bin:$PATH
+fi
+
 # racket
 #export PATH=${HOME}/racket/bin:$PATH
 
@@ -103,7 +110,7 @@ source ${DOTFILES_DIR}/config/common/history.zsh
 # search defaults
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #export FZF_DEFAULT_COMMAND="ag -p $DOTFILES_DIR/config/common/search.ignore --hidden --ignore-dir=.git -g ''"
-export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
+#export FZF_DEFAULT_COMMAND="ag --hidden --ignore-dir=.git -g ''"
 #export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 #export FZF_DEFAULT_COMMAND=rg --files --hidden
 #export FZF_DEFAULT_COMMAND='fd -L --hidden --exclude .git'
@@ -116,7 +123,6 @@ eval "$(direnv hook zsh)"
 
 # nix
 #source ${DOTFILES_DIR}/config/common/nix.zsh
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="~/sdkman"

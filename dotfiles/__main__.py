@@ -152,6 +152,8 @@ def lazygit(version):
 def shell_init():
     directory = get_project_path()
     print("export DOTFILES_DIR=%s" % directory)
+    setup = os.path.abspath(get_project_path(".."))
+    print("export DOTFILES_DIR_SETUP=%s" % setup)
     print("export EDITOR=nvim")
 
     # install_python_default_packages()
@@ -325,11 +327,17 @@ def cmd_install():
     install_fonts(get_project_path('config', 'common', 'fonts.conf'))
 
 
+def cmd_updir():
+    from . import updir
+    updir.main()
+
+
 CMDS = dict(
     install_dotfiles=cmd_install_dotfiles,
     install=cmd_install,
     init=shell_init,
-    info=info
+    info=info,
+    updir=cmd_updir
     )
 
 if __name__ == '__main__':

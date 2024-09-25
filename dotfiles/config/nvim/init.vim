@@ -21,7 +21,12 @@ Plug 'nvim-treesitter/nvim-treesitter' ", {'do': ':TSUpdate'}
 " https://github.com/junegunn/fzf.vim
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-
+" https://github.com/ibhagwan/fzf-lua
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
+" optional for icon support
+Plug 'nvim-tree/nvim-web-devicons'
+" or if using mini.icons/mini.nvim
+" Plug 'echasnovski/mini.icons'
 
 Plug 'BurntSushi/ripgrep'
 Plug 'nvim-lua/plenary.nvim'

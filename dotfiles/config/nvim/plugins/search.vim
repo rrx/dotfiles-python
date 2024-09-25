@@ -12,21 +12,22 @@
 let g:which_key_map['/'] = [':Ag',      'Search with silversearcher']
 
 " use FZF to read buffers and search lines
-"nnoremap <silent> <leader>B :Buffers<CR>
-let g:which_key_map.B = [ ':Buffers',  'search buffer list with FZF' ]
+nnoremap <silent> <leader>B :Buffers<CR>
+let g:which_key_map.b = [ ':FzfLua buffers',  'search buffer list with FZF' ]
 "nnoremap <silent> <leader>b :Lines<CR>
 
 " Files
 " Ctrl-F - search for a file
 "map <C-f> <Esc><Esc>:Files!<CR>
-"nnoremap <silent> <leader>f :Files<CR>
-let g:which_key_map.F = [ ':GFiles',  'search files with FZF' ]
-let g:which_key_map.f = [ ':Files',  'search files with FZF' ]
+"nnoremap <silent> <leader>f :FzfLua files<CR>
+let g:which_key_map.g = [ ':FzfLua git_files',  'search files with FZF' ]
+let g:which_key_map.f = [ ':FzfLua files',  'search files with FZF' ]
 
 " Ctrl-L - search in the current buffer
 "map <C-l>                    <Esc><Esc>:BLines<CR>
 "nnoremap <silent> <leader>b  <Esc><Esc>:BLines<CR>
-let g:which_key_map.b = [ ':BLines',  'search lines in current buffer with FZF' ]
+let g:which_key_map.B = [ ':FzfLua blines',  'search lines in current buffer with FZF' ]
+let g:which_key_map.e = [ ':FzfLua resume',  'resume search' ]
 
 " Telescope
 nnoremap <leader>tf <cmd>lua require('telescope.builtin').find_files()<cr>
@@ -44,10 +45,15 @@ nnoremap <leader>tld <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
 "let $FZF_DEFAULT_COMMAND = 'ag -p --hidden --ignore-dir=.git -g ""'
 "let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline'
 "let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+"
+" Initialize configuration dictionary
+"let g:fzf_vim = {}
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+let g:fzf_layout = {'up':'~100%', 'window': { 'width': 1, 'height': 1,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+"let g:fzf_vim.preview_window = 'top'
 
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
@@ -64,3 +70,16 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+lua << EOF
+require'fzf-lua'.setup {
+  winopts = {
+    height = 1,
+    width = 1,
+  },
+  preview = {
+    vertical = "up:66%",
+    horizontal = "right:66%",
+  }
+}
+EOF
