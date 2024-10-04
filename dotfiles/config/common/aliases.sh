@@ -47,3 +47,22 @@ function pre() {
   fzf --no-scrollbar --preview-window up,66% --preview 'bat --style=numbers --color=always --line-range :500 {}'
 }
 
+alias ku='kubectl config use-context $(kubectl config view -o json | jq -r ".clusters | .[] | .name" | fzf)'
+
+function kubectlgetall {
+  for i in $(kubectl api-resources --verbs=list --namespaced -o name | grep -v "events.events.k8s.io" | grep -v "events" | sort | uniq); do
+    echo "Resource:" $i
+
+    if [ -z "$1" ]
+    then
+        kubectl get --ignore-not-found ${i}
+    else
+        kubectl -n ${1} get --ignore-not-found ${i}
+    fi
+  done
+}
+
+function terminate-namespace {
+  kubectl get namespace $1 -o json |jq '.spec = {"finalizers":[]}' >temp.json
+  curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$1/finalize
+}
