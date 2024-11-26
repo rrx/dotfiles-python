@@ -25,6 +25,14 @@ alias h="history"
 # interactive cd
 alias xcd='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
+function expand-user-path() {
+  python3 -c "import sys,os;print(os.path.expanduser(sys.argv[1]))" $1
+}
+
+alias pj='cd $(python3 -c "import sys,os;print(os.path.expanduser(sys.argv[1]))" $(cat ~/.projects| fzf))'
+
+alias f="fzf | pbcopy"
+
 # up directory shortcut
 alias ..='cd ..'
 
@@ -63,6 +71,7 @@ function kubectlgetall {
 }
 
 function terminate-namespace {
+  kubectl proxy &
   kubectl get namespace $1 -o json |jq '.spec = {"finalizers":[]}' >temp.json
   curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$1/finalize
 }

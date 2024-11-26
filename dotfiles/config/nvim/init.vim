@@ -32,7 +32,6 @@ Plug 'BurntSushi/ripgrep'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 
-
 " Vimux
 Plug 'preservim/vimux'
 
