@@ -123,6 +123,10 @@ test -f ~/.zsh.local && source ~/.zsh.local
 # run direnv
 eval "$(direnv hook zsh)"
 
+# load compdef
+autoload -Uz compinit
+compinit
+
 # nix
 #source ${DOTFILES_DIR}/config/common/nix.zsh
 
