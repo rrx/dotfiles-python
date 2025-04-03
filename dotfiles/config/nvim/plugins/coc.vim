@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-sh', 'coc-json', 'coc-tsserver', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyls', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
+let g:coc_global_extensions = ['coc-sh', 'coc-go', 'coc-json', 'coc-tsserver', 'coc-git', 'coc-yaml', 'coc-rust-analyzer', 'coc-pyright', 'coc-snippets', 'coc-vimlsp', 'coc-yank', 'coc-groovy']
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -32,6 +32,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" run automatically for go files
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
