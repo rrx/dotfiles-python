@@ -4,17 +4,17 @@ brew install \
   ack\
   bat \
   bmon \
-  cmake \
+  compdef \
   coreutils \
   direnv \
-  exa \
+  eza \
+  fd \
+  fnm \
   git-delta \
   htop \
-  httpie \
   hyperfine \
   lazygit \
   lazydocker \
-  meld \
   neovim \
   pandoc \
   peco \
@@ -24,25 +24,26 @@ brew install \
   shellcheck \
   shfmt \
   the_silver_searcher \
+  tmux \
   tree \
   watch \
   wget
 
 # install meld
-brew cask install meld
+#brew cask install meld
 
 # enable x11 for macos
 #brew cask install xquartz
 
 # install alacritty
-brew install --cask --no-quarantine alacritty
+#brew install --cask --no-quarantine alacritty
 
 # better keybindings for window manager
 # https://github.com/rxhanson/Rectangle
-brew cask install rectangle
+#brew cask install rectangle
 
 # install slack via brew
-brew cask install slack
+#brew cask install slack
 
 # install mcfly
 #brew tap cantino/mcfly
@@ -55,7 +56,7 @@ brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 #brew install coreutils findutils gnu-tar gnu-sed gawk gnutls gnu-indent gnu-getopt grep
 
 # install cargo
-curl https://sh.rustup.rs -sSf | sh
+#curl https://sh.rustup.rs -sSf | sh
 
 # install fonts
 cd /Library/Fonts && {

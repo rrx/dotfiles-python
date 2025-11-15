@@ -3,15 +3,15 @@
 [includeIf "gitdir:~/code/"]
     path = .gitconfig-personal
 
-[core]
-        pager = delta --color-only
+;[core]
+        ;pager = delta --color-only
 
 [delta]
     features = decorations
     navigate = true
 
-[interactive]
-    diffFilter = delta --color-only --features=interactive
+;[interactive]
+    ;diffFilter = delta --color-only --features=interactive
 
 [pull]
 	ff = only

@@ -55,13 +55,15 @@ source ~/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh > /dev/null
 
 #source ~/.powerlevel10k/powerlevel10k.zsh-theme
 
-if [[ -f $(command -v starship) ]]; then
+# check executable
+if [[ -x $(command -v starship) ]]; then
   #source "$HOME/.zsh/spaceship/spaceship.zsh"
   eval "$(starship init zsh)"
 fi
 
 # set preferred commands
-if [[ -f $(command -v alacritty) ]]; then
+# check executable
+if [[ -x $(command -v alacritty) ]]; then
   export TERMINAL=alacritty
 fi
 
@@ -84,7 +86,7 @@ source $HOME/.cargo/env
 
 # fnm
 # install if missing
-if [[ -f $(command -v fnm) ]]; then
+if [[ -x $(command -v fnm) ]]; then
   INSTALL_NODE_VERSION=18.18.0
   #command -v fnm >> /dev/null || curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "~/.fnm" --skip-shell
   eval "$(fnm env)"
@@ -92,7 +94,7 @@ if [[ -f $(command -v fnm) ]]; then
   export PATH=${HOME}/.fnm:$PATH
 fi
 
-if [[ -f $(command -v go) ]]; then
+if [[ -x $(command -v go) ]]; then
   export PATH=${HOME}/go/bin:$PATH
 fi
 
@@ -120,6 +122,10 @@ test -f ~/.zsh.local && source ~/.zsh.local
 
 # run direnv
 eval "$(direnv hook zsh)"
+
+# load compdef
+autoload -Uz compinit
+compinit
 
 # nix
 #source ${DOTFILES_DIR}/config/common/nix.zsh
