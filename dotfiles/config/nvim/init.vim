@@ -12,7 +12,7 @@ call plug#begin('~/.local/share/nvim/plugged')
     "\ }
 
 
-Plug 'ggandor/leap-ast.nvim'
+"Plug 'ggandor/leap-ast.nvim'
 Plug 'ggandor/leap.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' ", {'do': ':TSUpdate'}
 "Plug 'neovim/nvim-lspconfig'
@@ -64,6 +64,7 @@ Plug 'preservim/nerdcommenter'
 
 "https://github.com/tpope/vim-surround
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 "https://github.com/gcmt/wildfire.vim
 Plug 'gcmt/wildfire.vim'
