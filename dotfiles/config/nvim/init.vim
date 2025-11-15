@@ -106,6 +106,7 @@ source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/wildfire.vim
 source ~/.config/nvim/plugins/vimux.vim
 source ~/.config/nvim/plugins/leap.vim
+source ~/.config/nvim/plugins/telescope.vim
 
 " END OF INIT
 

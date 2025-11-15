@@ -30,16 +30,16 @@ let g:which_key_map.B = [ ':FzfLua blines',  'search lines in current buffer wit
 let g:which_key_map.e = [ ':FzfLua resume',  'resume search' ]
 
 " Telescope
-nnoremap <leader>tf <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>tg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>tb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>th <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>tlr <cmd>lua require('telescope.builtin').lsp_references()<cr>
-nnoremap <leader>tli <cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>
-nnoremap <leader>tlo <cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>
-nnoremap <leader>tlx <cmd>lua require('telescope.builtin').diagnostics()<cr>
-nnoremap <leader>tli <cmd>lua require('telescope.builtin').lsp_implementations()<cr>
-nnoremap <leader>tld <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
+nnoremap <leader>mf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>mg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>mb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>mh <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <leader>mlr <cmd>lua require('telescope.builtin').lsp_references()<cr>
+nnoremap <leader>mli <cmd>lua require('telescope.builtin').lsp_incoming_calls()<cr>
+nnoremap <leader>mlo <cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>
+nnoremap <leader>mlx <cmd>lua require('telescope.builtin').diagnostics()<cr>
+nnoremap <leader>mli <cmd>lua require('telescope.builtin').lsp_implementations()<cr>
+nnoremap <leader>mld <cmd>lua require('telescope.builtin').lsp_definitions()<cr>
 
 " Use silver searcher - ignore git related files, include hidden files
 "let $FZF_DEFAULT_COMMAND = 'ag -p --hidden --ignore-dir=.git -g ""'
