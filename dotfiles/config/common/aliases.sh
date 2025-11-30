@@ -75,3 +75,10 @@ function terminate-namespace {
   kubectl get namespace $1 -o json |jq '.spec = {"finalizers":[]}' >temp.json
   curl -k -H "Content-Type: application/json" -X PUT --data-binary @temp.json 127.0.0.1:8001/api/v1/namespaces/$1/finalize
 }
+
+# Azure
+
+# switch accounts
+function azs {
+  az account list | jq -r '.[] | "\(.id),\(.tenantDisplayName),\(.name),\(.state)"' | fzf | cut -d, -f1 | xargs -I{} sh -c 'az account set --subscription {} ; echo Switched to {}'
+}
